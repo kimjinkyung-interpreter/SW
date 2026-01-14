@@ -1,8 +1,10 @@
 /* General Styles */
 :root {
-    --primary-color: #0073e6;
+    --primary-color: #8A2BE2; /* BlueViolet */
+    --primary-dark: #7B1FA2;  /* A darker shade for hover effects */
+    --primary-light: #E1BEE7; /* A light, soft purple for backgrounds */
     --dark-grey: #333;
-    --light-grey: #f4f4f4;
+    --light-grey: #f9f6ff; /* A very light purple to replace the old light-grey */
     --text-color: #555;
 }
 
@@ -230,8 +232,33 @@ a {
 }
 
 .cta-button:hover {
-    background-color: #0056b3;
+    background-color: var(--primary-dark);
     transform: translateY(-3px);
+}
+
+/* Photo Gallery Section */
+.photo-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.gallery-item {
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.gallery-item:hover {
+    transform: scale(1.05);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
 /* Footer */
