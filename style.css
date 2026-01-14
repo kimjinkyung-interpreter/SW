@@ -1,11 +1,21 @@
 /* General Styles */
 :root {
-    --primary-color: #8A2BE2; /* BlueViolet */
-    --primary-dark: #7B1FA2;  /* A darker shade for hover effects */
-    --primary-light: #E1BEE7; /* A light, soft purple for backgrounds */
-    --dark-grey: #333;
-    --light-grey: #f9f6ff; /* A very light purple to replace the old light-grey */
+    --primary-color: #007BFF; /* Bright Blue */
+    --primary-dark: #0056b3;  /* Darker Blue */
+    --primary-light: #f0f8ff; /* AliceBlue, for very light backgrounds */
+    --dark-grey: #343a40;
+    --light-grey: #f8f9fa;
     --text-color: #555;
+    --white: #fff;
+
+    /* New Accent Colors */
+    --accent-coral: #ff6f61;
+    --accent-mint: #68d388;
+    --accent-yellow: #ffc107;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
@@ -13,24 +23,44 @@ body {
     margin: 0;
     line-height: 1.8;
     color: var(--text-color);
+    /* New sky-like gradient background */
+    background: linear-gradient(to bottom, #d3e9ff 0%, #ffffff 50%);
+    background-attachment: fixed;
 }
 
 a {
     text-decoration: none;
     color: var(--primary-color);
+    transition: color 0.3s;
 }
 
-/* Scroll Animation */
+a:hover {
+    color: var(--primary-dark);
+}
+
+/* Scroll Animation Base */
 .scroll-animate {
     opacity: 0;
-    transform: translateY(30px);
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
+/* Animation Variations */
+.scroll-animate.fade-in-up {
+    transform: translateY(30px);
+}
+.scroll-animate.fade-in-left {
+    transform: translateX(-40px);
+}
+.scroll-animate.fade-in-right {
+    transform: translateX(40px);
+}
+
+/* Animation Triggered State */
 .scroll-animate.visible {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) translateX(0);
 }
+
 
 /* Header */
 #header {
@@ -39,7 +69,8 @@ a {
     left: 0;
     width: 100%;
     z-index: 1000;
-    transition: background-color 0.3s ease-in-out;
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    background-color: var(--white);
 }
 
 #navbar {
@@ -53,8 +84,7 @@ a {
 }
 
 #header.scrolled {
-    background-color: white;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
 }
 
 #header.scrolled #navbar {
@@ -64,10 +94,6 @@ a {
 .logo a {
     font-size: 1.8rem;
     font-weight: 700;
-    color: white;
-}
-
-#header.scrolled .logo a {
     color: var(--dark-grey);
 }
 
@@ -83,20 +109,34 @@ a {
 }
 
 #navbar ul li a {
-    color: white;
+    color: var(--dark-grey);
     font-weight: 700;
     font-size: 1rem;
+    position: relative;
+    padding-bottom: 5px;
 }
 
-#header.scrolled #navbar ul li a {
-    color: var(--text-color);
+/* Underline effect for nav links */
+#navbar ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease-in-out;
 }
+#navbar ul li a:hover::after {
+    width: 100%;
+}
+
 
 /* Hero Section */
 .hero {
-    height: 100vh;
-    /* New Image: A woman on a path of discovery */
-    background: url('https://images.unsplash.com/photo-1503435980610-a51f4ddfee50?q=80&w=2072&auto=format&fit=crop') no-repeat center center/cover;
+    height: 90vh;
+    background: url('https://images.unsplash.com/photo-1529333166437-77501bd49a94?q=80&w=1932&auto=format&fit=crop') no-repeat center center/cover;
+    background-attachment: fixed; /* Parallax effect for hero */
     position: relative;
     display: flex;
     justify-content: center;
@@ -105,48 +145,74 @@ a {
 }
 
 .hero-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
+    display: none;
 }
 
 .hero-content {
     position: relative;
-    color: white;
+    color: var(--dark-grey);
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8); /* Slightly more opaque background */
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
 .hero h1 {
-    font-size: 4rem;
+    font-size: 3.5rem;
     font-weight: 700;
     margin-bottom: 20px;
+    color: var(--primary-dark);
 }
 
 .hero p {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
 }
 
 /* Content Sections */
 .content-section {
-    padding: 80px 30px;
+    padding: 100px 30px;
     max-width: 1100px;
     margin: 0 auto;
     text-align: center;
+    background-color: var(--white); /* Give sections a solid background */
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    margin-bottom: 40px;
 }
 
 .content-section-dark {
-    background-color: var(--light-grey);
-    padding: 80px 30px;
+    background-color: var(--primary-light);
+    padding: 100px 30px;
     text-align: center;
 }
 
 .content-section h2, .content-section-dark h2 {
     font-size: 2.5rem;
     color: var(--dark-grey);
-    margin-bottom: 50px;
+    margin-bottom: 60px;
+    position: relative;
+    display: inline-block;
 }
+
+/* Decorative underline for headings */
+.content-section h2::after, .content-section-dark h2::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    border-radius: 2px;
+}
+
+#intro h2::after { background-color: var(--accent-mint); }
+#course h2::after { background-color: var(--accent-yellow); }
+#video h2::after { background-color: var(--primary-color); }
+#reviews h2::after { background-color: var(--accent-coral); }
+#photo-gallery h2::after { background-color: var(--accent-mint); }
+#apply h2::after { background-color: var(--accent-coral); }
+
 
 /* Intro Section */
 .intro-grid {
@@ -157,17 +223,23 @@ a {
 }
 
 .intro-item {
-    background: #fff;
-    padding: 30px;
+    background: var(--white);
+    padding: 35px;
     border-radius: 8px;
+    border-top: 5px solid var(--accent-mint);
     box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.intro-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
 }
 
 /* Course Section */
 .course-content {
     display: flex;
     align-items: center;
-    gap: 50px;
+    gap: 60px;
     max-width: 1100px;
     margin: 0 auto;
     text-align: left;
@@ -182,30 +254,50 @@ a {
 }
 
 .course-image img {
-    max-width: 200px;
+    max-width: 220px;
     border-radius: 8px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
+
+/* Video Section */
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+    background: #000;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
 
 /* Review Section */
 .review-cards {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
-    justify-content: center;
-    flex-wrap: wrap;
 }
 
 .review-card {
-    background: var(--light-grey);
+    background: var(--white);
     padding: 30px;
     border-radius: 8px;
-    flex-basis: 300px;
-    flex-grow: 1;
+    border-left: 5px solid var(--accent-coral);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
     text-align: left;
 }
 
 .review-card p {
     font-style: italic;
+    color: #444;
 }
 
 .review-card span {
@@ -213,6 +305,7 @@ a {
     margin-top: 15px;
     font-weight: 700;
     text-align: right;
+    color: var(--accent-coral);
 }
 
 /* CTA Section */
@@ -222,18 +315,20 @@ a {
 }
 
 .cta-button {
-    background-color: var(--primary-color);
-    color: white;
+    background-color: var(--accent-coral);
+    color: var(--white);
     padding: 15px 40px;
     border-radius: 50px;
     font-size: 1.1rem;
     font-weight: 700;
     transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0 5px 15px rgba(255, 111, 97, 0.3);
 }
 
 .cta-button:hover {
-    background-color: var(--primary-dark);
+    background-color: #e05a4f; /* Darker coral */
     transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255, 111, 97, 0.4);
 }
 
 /* Photo Gallery Section */
@@ -246,12 +341,13 @@ a {
 .gallery-item {
     overflow: hidden;
     border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease-in-out;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.07);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s;
 }
 
 .gallery-item:hover {
     transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
 }
 
 .gallery-item img {
@@ -263,8 +359,61 @@ a {
 
 /* Footer */
 footer {
-    background: #222;
-    color: #aaa;
+    background: var(--light-grey);
+    color: #6c757d;
     text-align: center;
-    padding: 30px;
+    padding: 40px 20px;
+    border-top: 1px solid #e9ecef;
+}
+
+/* --- Mobile Optimization --- */
+@media (max-width: 768px) {
+    #navbar {
+        flex-direction: column;
+        padding: 15px;
+    }
+
+    #navbar ul {
+        margin-top: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    #navbar ul li {
+        margin: 5px 10px;
+    }
+
+    .logo a {
+        font-size: 1.5rem;
+    }
+
+    .hero {
+        height: 70vh;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero p {
+        font-size: 1.1rem;
+    }
+
+    .content-section, .content-section-dark {
+        padding: 60px 20px;
+    }
+
+    .content-section h2, .content-section-dark h2 {
+        font-size: 2rem;
+        margin-bottom: 40px;
+    }
+
+    .course-content {
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .course-image img {
+        max-width: 180px;
+    }
 }
