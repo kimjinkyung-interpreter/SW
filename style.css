@@ -1,17 +1,17 @@
 /* General Styles */
 :root {
-    --primary-color: #007BFF; /* Bright Blue */
-    --primary-dark: #0056b3;  /* Darker Blue */
-    --primary-light: #f0f8ff; /* AliceBlue, for very light backgrounds */
+    --primary-color: #8A2BE2; /* BlueViolet - Primary Purple */
+    --primary-dark: #6A1BA3;  /* Darker Purple */
+    --primary-light: #EBDCF6; /* Light Purple for very light backgrounds */
     --dark-grey: #343a40;
     --light-grey: #f8f9fa;
     --text-color: #555;
     --white: #fff;
 
-    /* New Accent Colors */
-    --accent-coral: #ff6f61;
-    --accent-mint: #68d388;
-    --accent-yellow: #ffc107;
+    /* New Accent Colors - Complementary to purple */
+    --accent-coral: #FF69B4; /* HotPink */
+    --accent-mint: #9370DB; /* MediumPurple */
+    --accent-yellow: #DA70D6; /* Orchid */
 }
 
 html {
@@ -24,7 +24,7 @@ body {
     line-height: 1.8;
     color: var(--text-color);
     /* New sky-like gradient background */
-    background: linear-gradient(to bottom, #d3e9ff 0%, #ffffff 50%);
+    background: linear-gradient(to bottom, #F8F0FF 0%, #ffffff 50%);
     background-attachment: fixed;
 }
 
@@ -152,7 +152,7 @@ a:hover {
     position: relative;
     color: var(--dark-grey);
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0.8); /* Slightly more opaque background */
+    background-color: rgba(235, 220, 246, 0.8); /* Slightly more opaque background with purple tint */
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
@@ -326,9 +326,9 @@ a:hover {
 }
 
 .cta-button:hover {
-    background-color: #e05a4f; /* Darker coral */
+    background-color: #6A1BA3; /* Darker purple */
     transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(255, 111, 97, 0.4);
+    box-shadow: 0 8px 20px rgba(138, 43, 226, 0.4);
 }
 
 /* Photo Gallery Section */
@@ -389,6 +389,7 @@ footer {
 
     .hero {
         height: 70vh;
+        padding-top: 120px; /* Add padding to push content down */
     }
 
     .hero h1 {
